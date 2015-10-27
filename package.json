@@ -1,0 +1,22 @@
+{
+  "name": "dms-api",
+  "version": "1.0.0",
+  "description": "api for a document management system",
+  "main": "server.js",
+  "scripts": {
+    "test": "jasmine-node spec/"
+  },
+  "author": "uopaluwa",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "jasmine-node": "^1.14.5",
+    "jsonwebtoken": "^5.4.0",
+    "mongoose": "^4.2.2",
+    "morgan": "^1.6.1",
+    "node-repl": "^2.0.2",
+    "nodemon": "^1.8.0"
+  }
+}
