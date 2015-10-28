@@ -17,6 +17,8 @@
     "mongoose": "^4.2.2",
     "morgan": "^1.6.1",
     "node-repl": "^2.0.2",
-    "nodemon": "^1.8.0"
+    "nodemon": "^1.8.0",
+    "request": "^2.65.0",
+    "supertest": "^1.1.0"
   }
 }
