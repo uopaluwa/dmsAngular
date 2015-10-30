@@ -116,7 +116,7 @@ DocumentController.prototype.deleteCurrentDoc = function(req, res) {
 };
 
 DocumentController.prototype.getMyDocs = function(req, res) {
-  Document.find({ ownerId: req.headers['u_id']}, function(err, docs) {
+  Document.find({ ownerId: req.headers['u_id'] || req.decoded._id}, function(err, docs) {
     if (err) {
       return res.json(err);
     }

@@ -115,7 +115,6 @@ UserController.prototype.getUsers = function(req, res) {
 
 
 UserController.prototype.editUser = function(req, res) {
-
   User.findByIdAndUpdate({
     _id: req.decoded._id
   }, req.body, {
@@ -127,7 +126,6 @@ UserController.prototype.editUser = function(req, res) {
     var token = jwt.sign(user, config.secret, {
       expiresIn: 86400 //24hr expiration
     });
-
     return res.json({
       user: user,
       token: token
@@ -136,12 +134,12 @@ UserController.prototype.editUser = function(req, res) {
 };
 
 UserController.prototype.getCurrentUser = function(req, res) {
-  User.findById(req.decoded._id, function(err, user) {
+  User.findById(req.headers['u_id'], function(err, user) {
     if (err) {
-      res.status(500).send(err);
+      return res.status(500).send(err);
     }
- else {
-      res.json(user);
+    else {
+      return  res.json({user: user});
     }
   });
 };

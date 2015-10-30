@@ -4,15 +4,15 @@ var Document = require('../models/document');
 var doc;
 var config = require('../config');
 
-mongoose.connect(config.database);
-var db = mongoose.connection;
-
-db.on('error', function (err) {
-  console.log('connection error', err);
-});
-db.once('open', function () {
-  console.log('connected.');
-});
+// mongoose.connect(config.database);
+// var db = mongoose.connection;
+//
+// db.on('error', function (err) {
+//   console.log('connection error', err);
+// });
+// db.once('open', function () {
+//   console.log('connected.');
+// });
 
 describe('Document Model', function() {
   beforeEach(function(done) {
