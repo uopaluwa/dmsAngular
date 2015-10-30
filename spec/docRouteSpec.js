@@ -20,6 +20,7 @@ describe("Route Tests", function() {
     doc = new Document();
     doc.title = 'The Hobbit';
     doc.content = 'this is a document.';
+
     user.save(function(err, user) {
       uId = user._id;
       doc.ownerId = uId;
@@ -75,13 +76,13 @@ describe("Route Tests", function() {
           token = JSON.parse(JSON.stringify(body));
           request({ method: 'GET', headers: {u_id: uId, 'x-access-token': token.token},uri: "http://localhost:8080/api/users/"+uId+"/documents"},
           function(error, response, body) {
-              var userDocs = JSON.parse(body);
-              expect(response.statusCode).toBe(200);
-              expect(userDocs.length).toEqual(2);
-              expect(userDocs[0].title).toBe('The Hobbit');
-              expect(userDocs[1].title).toBe('Harry Potter');
-              done();
-            });
+            var userDocs = JSON.parse(body);
+            expect(response.statusCode).toBe(200);
+            expect(userDocs.length).toEqual(2);
+            expect(userDocs[0].title).toBe('The Hobbit');
+            expect(userDocs[1].title).toBe('Harry Potter');
+            done();
+          });
         })
       });
     });
@@ -112,12 +113,12 @@ describe("Route Tests", function() {
           thetoken = JSON.parse(data);
           request({ method: 'PUT', headers: {doc_id: docId, 'x-access-token': thetoken.token},uri: base_url+'/'+docId,
           json: {"title": "Desolation of Smaug"}}, function(error, response, body) {
-              var editedDoc = JSON.parse(JSON.stringify(body));
-              expect(response.statusCode).toBe(200);
-              expect(editedDoc.title).toBe('Desolation of Smaug');
-              expect(editedDoc.content).toBe('this is a document.');
-              done();
-            });
+            var editedDoc = JSON.parse(JSON.stringify(body));
+            expect(response.statusCode).toBe(200);
+            expect(editedDoc.title).toBe('Desolation of Smaug');
+            expect(editedDoc.content).toBe('this is a document.');
+            done();
+          });
         })
       });
     });
@@ -138,7 +139,5 @@ describe("Route Tests", function() {
         })
       });
     });
-
   });
-
 });

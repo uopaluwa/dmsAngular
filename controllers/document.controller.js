@@ -4,11 +4,7 @@ var mongoose = require('mongoose');
 var config = require('../config');
 var Document = require('../models/document');
 var jwt = require('jsonwebtoken');
-
-
-
 var DocumentController = function() {};
-
 
 DocumentController.prototype.createDocument = function(req, res) {
   if ( !req.body.title) {
@@ -17,9 +13,7 @@ DocumentController.prototype.createDocument = function(req, res) {
       message: 'Check parameters!'
     });
   }
-  Document.findOne({
-    title: req.body.title
-  }, function(err, doc) {
+  Document.findOne({title: req.body.title}, function(err, doc) {
     if (err) {
       return res.json(err);
     } else if (doc) {
@@ -48,32 +42,23 @@ DocumentController.prototype.getDocuments = function(req, res) {
 };
 
 DocumentController.prototype.editDoc = function(req, res) {
-  Document.findOneAndUpdate({
-    _id: req.headers['doc_id'], ownerId: req.decoded._id
-  }, req.body, {
-    new: true
-  }, function(err, doc) {
-    if (err) {
-      return res.json(err);
-    }else if(!doc){
-      res.json({
-        success: false,
-        message: 'Unauthorised'
-      });
-    }
-    else {
-      return res.json(doc);
-    }
-
+  Document.findOneAndUpdate({_id: req.headers['doc_id'], ownerId: req.decoded._id}, 
+    req.body, { new: true }, function(err, doc) {
+      if (err) {
+        return res.json(err);
+      } else if(!doc){
+        res.json({
+          success: false,
+          message: 'Unauthorised'
+        });
+      } else { return res.json(doc); }
   });
 };
 
 DocumentController.prototype.getCurrentDoc = function(req, res) {
   Document.findById(req.headers['doc_id'], function(err, doc) {
-    if (err) {
-      res.status(500).send(err);
-    }
- else if(doc) {
+    if (err) { res.status(500).send(err); }
+    else if(doc) {
       res.json(doc);
     } else {
       res.json({
@@ -85,28 +70,17 @@ DocumentController.prototype.getCurrentDoc = function(req, res) {
 };
 
 DocumentController.prototype.deleteCurrentDoc = function(req, res) {
-
   var docId = req.headers['doc_id'];
-
   Document.findOne({_id: docId, ownerId: req.decoded._id}, function(err, doc) {
-
-    if (err) {
-      return res.status(500).send(err);
+    if (err) { return res.status(500).send(err);
     } else if(doc) {
-
-                  Document.remove({
-                    _id: docId
-                  }, function(err, doc) {
-                    if (err) return res.status(500).send(err);
-
-                    res.json({
-                      message: 'Succesfully deleted'
-                    });
-
-                  });
-
+      Document.remove({ _id: docId }, function(err, doc) {
+        if (err) return res.status(500).send(err);
+        res.json({
+          message: 'Succesfully deleted'
+        });
+      });
     } else {
-
       return res.status(422).send({
         success: false,
         message: 'Document not found in db'

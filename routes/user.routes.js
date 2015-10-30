@@ -5,7 +5,6 @@ var docCtrl = new docController();
 var ctrl = new UserController();
 var router = express.Router();
 
-
 module.exports = function(app) {
 
   router.route('/users')
@@ -17,7 +16,7 @@ module.exports = function(app) {
 
   // router.route('/users/logout')
   //   .post(ctrl.logoutUser);
-
+  
   router.route('/users/:u_id')
     .get(ctrl.verifyToken, ctrl.getCurrentUser)
     .put(ctrl.verifyToken, ctrl.editUser)

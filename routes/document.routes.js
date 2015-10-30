@@ -5,9 +5,7 @@ var ctrl = new UserController();
 var docCtrl = new docController();
 var router = express.Router();
 
-
 module.exports = function(app) {
-
   router.route('/documents')
     .post(docCtrl.createDocument)
     .get(docCtrl.getDocuments);

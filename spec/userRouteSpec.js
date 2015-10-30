@@ -72,7 +72,7 @@ describe("Route Tests", function() {
     });
 
     it("GET /users/:u_id returns specific user", function(done) {
-      var second, newguy;
+      var second;
       second = new User();
       second.username = 'atl';
       second.name.first = 'lambo';
@@ -91,8 +91,7 @@ describe("Route Tests", function() {
     });
 
     it("PUT /users/:u_id edits specific user", function(done) {
-      var thetoken;
-      var bEachUser = {"password" : "mattdam", "email": "mat@gmail.com"};
+      var thetoken, bEachUser = {"password" : "mattdam", "email": "mat@gmail.com"};
       request({ method: 'POST', uri: base_url+"/login", json: bEachUser}).on('response', function(response) {
         response.on('data', function(data) {
           thetoken = JSON.parse(data);
@@ -108,22 +107,20 @@ describe("Route Tests", function() {
     });
 
     it("DELETE /users/:u_id deletes specific user", function(done) {
-      var thetoken;
-      var bEachUser = {"password" : "mattdam", "email": "mat@gmail.com"};
+      var thetoken, bEachUser = {"password" : "mattdam", "email": "mat@gmail.com"};
       request({ method: 'POST', uri: base_url+"/login", json: bEachUser}).on('response', function(response) {
         response.on('data', function(data) {
           thetoken = JSON.parse(data);
           request({ method: 'DELETE', headers: {u_id: uId, 'x-access-token': thetoken.token},uri: base_url+'/'+uId},
-            function(error, response, body) {
-              var output = JSON.parse(body);
-              expect(response.statusCode).toBe(200);
-              expect(output.message).toBe('Succesfully deleted');
-              done();
-            });
+          function(error, response, body) {
+            var output = JSON.parse(body);
+            expect(response.statusCode).toBe(200);
+            expect(output.message).toBe('Succesfully deleted');
+            done();
+          });
         })
       });
     });
-
   });
 
 });

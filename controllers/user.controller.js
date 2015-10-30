@@ -4,13 +4,7 @@ var mongoose = require('mongoose');
 var config = require('../config');
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
-
-
-
-var UserController = function(passport) {
-  UserController.passport = passport;
-};
-
+var UserController = function() {};
 
 UserController.prototype.createUser = function(req, res) {
   if ( !req.body.email || !req.body.password) {
@@ -71,8 +65,6 @@ UserController.prototype.authenticate = function(req, res) {
           token: token
         });
       }
-    } else {
-      return;
     }
   });
 };
@@ -93,14 +85,13 @@ UserController.prototype.verifyToken = function(req, res, next) {
         next();
       }
     });
-}
+  }
   else {
     //show http 403 message when token is not provided
     return res.status(403).send({
       success: false,
       message: 'No token provided.'
     });
-
   }
 };
 
@@ -115,11 +106,8 @@ UserController.prototype.getUsers = function(req, res) {
 
 
 UserController.prototype.editUser = function(req, res) {
-  User.findByIdAndUpdate({
-    _id: req.decoded._id
-  }, req.body, {
-    new: true
-  }, function(err, user) {
+  User.findByIdAndUpdate({_id: req.decoded._id}, req.body, {
+    new: true}, function(err, user) {
     if (err) {
       return res.json(err);
     }
@@ -145,28 +133,17 @@ UserController.prototype.getCurrentUser = function(req, res) {
 };
 
 UserController.prototype.deleteCurrentUser = function(req, res) {
-
   var userId = req.decoded._id;
-
   User.findById(userId, function(err, user) {
-
     if (err) {
       return res.status(500).send(err);
-    } else if(user) {
-
-                  User.remove({
-                    _id: userId
-                  }, function(err, user) {
-                    if (err) return res.status(500).send(err);
-
-                    res.json({
-                      message: 'Succesfully deleted'
-                    });
-
-                  });
-
+    } else if(user) { User.remove({_id: userId}, function(err, user) {
+        if (err) return res.status(500).send(err);
+        res.json({
+          message: 'Succesfully deleted'
+        });
+      });
     } else {
-
       return res.status(422).send({
         success: false,
         message: 'User not found in db'
