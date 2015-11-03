@@ -54,7 +54,7 @@ describe("Route Tests", function() {
         expect(response.body.username).toBe('second');
         expect(response.body.name.last).toBe('person');
         done();
-      })
+      });
     });
 
     it("POST /users/login authenticate and issue token", function(done) {
@@ -68,7 +68,7 @@ describe("Route Tests", function() {
         expect(response.statusCode).toBe(200);
         expect(response.body.token).toBeTruthy();
         done();
-      })
+      });
     });
 
     it("GET /users/:u_id returns specific user", function(done) {
@@ -102,7 +102,7 @@ describe("Route Tests", function() {
               expect(currentUser.user.email).toBe('nikitude@aol.com');
               done();
             });
-        })
+        });
       });
     });
 
@@ -118,7 +118,7 @@ describe("Route Tests", function() {
             expect(output.message).toBe('Succesfully deleted');
             done();
           });
-        })
+        });
       });
     });
   });

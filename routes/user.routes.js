@@ -14,9 +14,9 @@ module.exports = function(app) {
   router.route('/users/login')
     .post(ctrl.authenticate);
 
-  // router.route('/users/logout')
-  //   .post(ctrl.logoutUser);
-  
+  router.route('/users/logout')
+    .post(ctrl.logoutUser);
+
   router.route('/users/:u_id')
     .get(ctrl.verifyToken, ctrl.getCurrentUser)
     .put(ctrl.verifyToken, ctrl.editUser)

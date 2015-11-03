@@ -61,7 +61,7 @@ describe("Route Tests", function() {
         expect(response.body.title).toBe('Monte Cristo');
         expect(response.body.content).toBe('strange story');
         done();
-      })
+      });
     });
 
     it("GET /users/:doc_id/documents return all user docs", function(done) {
@@ -83,7 +83,7 @@ describe("Route Tests", function() {
             expect(userDocs[1].title).toBe('Harry Potter');
             done();
           });
-        })
+        });
       });
     });
 
@@ -119,7 +119,7 @@ describe("Route Tests", function() {
             expect(editedDoc.content).toBe('this is a document.');
             done();
           });
-        })
+        });
       });
     });
 
@@ -136,7 +136,7 @@ describe("Route Tests", function() {
               expect(output.message).toBe('Succesfully deleted');
               done();
             });
-        })
+        });
       });
     });
   });

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+//define document model
 var documentSchema = new Schema({
   ownerId: {type: String, required: true, ref: 'User'},
   title : {type: String, required: true, unique: true},
