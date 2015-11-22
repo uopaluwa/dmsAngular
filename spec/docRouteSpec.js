@@ -1,7 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
-var Document = require('../models/document');
-var User = require('../models/user');
+var Document = require('../app/models/document');
+var User = require('../app/models/user');
 var app = require('../server');
 var request = require('request');
 var doc, user, uId, docId, token, secondDoc;

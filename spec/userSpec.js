@@ -1,5 +1,5 @@
 'use strict';
-var User = require('../models/user');
+var User = require('../app/models/user');
 var user;
 var config = require('../config');
 

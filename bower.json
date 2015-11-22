@@ -1,0 +1,30 @@
+{
+  "name": "dmsAngular",
+  "version": "0.0.0",
+  "homepage": "https://github.com/andela-uopaluwa/dmsAngular",
+  "description": "dms Angular application",
+  "main": "server.js",
+  "authors": [
+    "uopaluwa"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "bower": "*",
+    "install": "~1.0.4",
+    "angular-ui-router": "~0.2.15",
+    "angular-route": "~1.4.7",
+    "angular-material": "~0.11.4",
+    "angular-jwt-decode": "~1.0.1",
+    "angular-jwt": "~0.0.9",
+    "angular-material-icons": "~0.6.0"
+  }
+}

@@ -1,6 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
-var Document = require('../models/document');
+var Document = require('../app/models/document');
 var doc;
 var config = require('../config');
 

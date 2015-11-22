@@ -1,0 +1,31 @@
+<md-dialog aria-label="Edit"  ng-cloak layout="column" style="width:70%;">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 ng-hide="!editMode">EDIT DOCUMENT</h2>
+        <h2 ng-hide="editMode">DOCUMENT DETAILS</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="Cancel">
+          <ng-md-icon icon="close" style="fill: pink" size="40"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+      <div class="md-dialog-content">
+        <md-input-container>
+          <label ng-hide="!editMode">Document Title</label>
+          <input type="text" required="true" ng-hide="!editMode" ng-model="doc.title"></input>
+          <span ng-hide="editMode"><strong>Title:</strong> {{doc.title}}</span>
+        </md-input-container>
+        <md-input-container>
+          <label ng-hide="!editMode">Content</label>
+          <textarea type="text" ng-hide="!editMode" ng-model="doc.content"></textarea>
+          <span ng-hide="editMode"><strong>Content:</strong> <br>{{doc.content}}</span>
+        </md-input-container>
+      </div>
+    <md-dialog-actions layout="row" layout-align="center center">
+      <md-button ng-click="editDoc(doc)" class="md-accent md-raised" ng-hide="!editMode">
+       SAVE
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

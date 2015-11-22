@@ -1,0 +1,28 @@
+<md-dialog aria-label="Create" style="width:70%;" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>CREATE DOCUMENT</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="Close">
+          <ng-md-icon icon="close" style="fill: pink" size="40"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+      <div class="md-dialog-content">
+        <md-input-container>
+          <label>Document Title</label>
+          <input type="text" required="true" ng-model="doc.title"></input>
+        </md-input-container>
+        <md-input-container>
+          <label>Content</label>
+          <textarea type="text" ng-model="doc.content" rows="3"></textarea>
+        </md-input-container>
+      </div>
+    <md-dialog-actions layout="row" layout-align="center center">
+      <md-button ng-click="createNewDoc(doc)" class="md-accent md-raised">
+       CREATE
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

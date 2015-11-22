@@ -1,0 +1,68 @@
+<div ng-controller="homeCtrl" layout="column" ng-cloak id="view-body">
+  <md-toolbar layout="row" class "md-padding" id="tbar">
+    <div class="md-toolbar-tools">
+      <md-button id="logo">DOC<ng-md-icon icon="cloud" style="fill: white; margin-top: -7px;" size="40"></ng-md-icon></md-button>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+  
+  <div class="container" style="background-image: url('../../assets/img/desk.jpeg');">
+  <p id="pitch"><strong>"Go paper-free,<br> save it to DOC-CLOUD"</strong></p>
+  <md-card layout="column" flex="30" flex-sm="80" flex-md="60" class="login-card">
+      <md-card-content>
+        <md-tabs class="md-primary" md-dynamic-height>
+          <md-tab label="LOG IN">
+            <md-content class="md-padding">
+              <form name="loginForm">
+              <md-input-container >
+                <label>Email</label>
+                <input ng-model="user.email" required="true" type="email">
+                <div ng-show="wrongEmail" class="error-message">Unregistered email</div>
+              </md-input-container>
+              <md-input-container>
+                <label>Password</label>
+                <input ng-model="user.password" required="true" type="password">
+                <div ng-show="wrongPassword" class="error-message">Invalid password</div>
+              </md-input-container>
+              <div class="md-actions" layout="row" layout-align="end center">
+                <md-button class="md-raised" ng-click="login(user)" ng-disabled="loginForm.$invalid">LOGIN</md-button>
+              </div>
+              </form>
+            </md-content>
+          </md-tab>
+          <md-tab label="SIGN UP">
+            <md-content class="md-padding">
+              <form name="signupForm">
+              <md-input-container>
+                <label>Username</label>
+                <input ng-model="user.username" required="true" type="text">
+                <div ng-show="wrongUsername" class="error-message">This Username is taken</div>
+              </md-input-container>
+              <md-input-container>
+                <label>Password</label>
+                <input ng-model="user.password" required="true" type="password">
+              </md-input-container>
+              <md-input-container>
+                <label>Firstname</label>
+                <input ng-model="user.name.first" required="true" type="text">
+              </md-input-container>
+              <md-input-container>
+                <label>Lastname</label>
+                <input ng-model="user.name.last" required="true" type="text">
+              </md-input-container>
+              <md-input-container>
+                <label>Email</label>
+                <input ng-model="user.email" required="true" type="email">
+                <div ng-show="wrongEmail" class="error-message">This email is taken</div>
+              </md-input-container>
+              <div class="md-actions" layout="row" layout-align="end center">
+                <md-button class="md-raised" ng-click="signUp(user)" ng-disabled="signupForm.$invalid">SIGN UP</md-button>
+              </div>
+            </form>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
