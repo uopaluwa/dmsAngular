@@ -1,28 +1,43 @@
-<md-dialog aria-label="Create" style="width:70%;" ng-cloak>
-  <form>
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2>CREATE DOCUMENT</h2>
-        <span flex></span>
-        <md-button class="md-icon-button" ng-click="cancel()" aria-label="Close">
-          <ng-md-icon icon="close" style="fill: pink" size="40"></ng-md-icon>
+<md-toolbar layout="row" class "md-padding">
+  <div class="md-toolbar-tools">
+    <md-button id="logo" ng-click="logout()">DOC
+      <ng-md-icon icon="cloud" style="fill: white; margin-top: -7px;" size="40"></ng-md-icon>
+    </md-button>
+    <span flex></span>
+    <md-fab-speed-dial md-open="false" md-direction="down" ng-class="md-fling" style="margin-top:9.5%;">
+      <md-fab-trigger>
+        <md-button aria-label="text" style="fill: blue;" class="md-warn">
+          <span>Hi, {{user.username}}</span>
+        </md-button>
+      </md-fab-trigger>
+      <md-fab-actions>
+        <md-button ng-click="toProfile()" class="md-fab md-primary md-raised" aria-label="Account">
+          <ng-md-icon icon="account_box" size="40"></ng-md-icon>
+        </md-button>
+        <md-button aria-label="Logout" class="md-fab md-primary md-raised" ng-click="logout()">
+          <ng-md-icon icon="logout" size="40"></ng-md-icon>
+        </md-button>
+      </md-fab-actions>
+    </md-fab-speed-dial>
+  </div>
+</md-toolbar>
+<div id="createContainer">
+  <form name="createForm" layout-align="center center">
+    <md-card class="md-padding create-card" flex="80">
+      <md-input-container class="md-padding">
+        <label>Document Title</label>
+        <input type="text" required="true" ng-model="doc.title"></input>
+      </md-input-container>
+      <md-input-container class="md-padding">
+        <label>Content</label>
+        <textarea type="text" ng-model="doc.content" rows="3"></textarea>
+      </md-input-container>
+      <div layout="row" layout-align="center center">
+        <md-button ng-click="createNewDoc(doc)" ng-disabled="createForm.$invalid" class="md-accent md-raised">
+         CREATE
         </md-button>
       </div>
-    </md-toolbar>
-      <div class="md-dialog-content">
-        <md-input-container>
-          <label>Document Title</label>
-          <input type="text" required="true" ng-model="doc.title"></input>
-        </md-input-container>
-        <md-input-container>
-          <label>Content</label>
-          <textarea type="text" ng-model="doc.content" rows="3"></textarea>
-        </md-input-container>
-      </div>
-    <md-dialog-actions layout="row" layout-align="center center">
-      <md-button ng-click="createNewDoc(doc)" class="md-accent md-raised">
-       CREATE
-      </md-button>
-    </md-dialog-actions>
+    </md-card>
   </form>
-</md-dialog>
+</div>
+

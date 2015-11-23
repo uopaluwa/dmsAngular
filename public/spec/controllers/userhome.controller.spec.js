@@ -33,12 +33,11 @@ describe('Controllers', function(){
 
   describe('userCtrl', function(){
 
-    it('should toggle editMode',function(){
-      expect($scope.editMode).toBe(true);
-      expect($scope.visibility).toBe(true);
-      expect($scope.toggleVisibility).toBeDefined();
-      $scope.toggleMode();
-      expect($scope.editMode).toBe(false);
+    it('should navigate to profile page',function(){
+      expect($scope.toProfile).toBeDefined;
+      spyOn($scope, 'toProfile');
+      $scope.toProfile();
+      expect($location.url).toHaveBeenCalled();
     });
 
     it('should call userService.editProfile method',function(){
@@ -87,11 +86,11 @@ describe('Controllers', function(){
       expect(UserService.deleteDoc).toHaveBeenCalledWith(id);
     });
 
-    it('should trigger md.dialog',function(){
-      expect($scope.showCreateModal).toBeDefined();
-      spyOn($mdDialog, 'show');
-      $scope.showCreateModal();
-      expect($mdDialog.show).toHaveBeenCalled();
+    it('should naviagate to create doc page',function(){
+      expect($scope.toCreateView).toBeDefined();
+      spyOn($scope, 'toCreateView');
+      $scope.toCreateView();
+      expect($location.url).toHaveBeenCalled();
     });
 
     it('should logout a user',function(){

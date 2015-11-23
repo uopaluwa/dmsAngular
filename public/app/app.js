@@ -7,6 +7,16 @@ angular.module("dmsApp", ['ui.router','ngMaterial','ngMdIcons'])
         templateUrl: 'app/views/login.html',
         controller: 'homeCtrl'
       })
+      .state('profile', {
+        url: '/userprofile',
+        templateUrl: 'app/views/profilepage.view.html',
+        controller: 'userCtrl'
+      })
+      .state('create', {
+        url: '/createdoc',
+        templateUrl: 'app/views/createdoc.view.html',
+        controller: 'userCtrl'
+      })
       .state('userhome', {
         url: '/userhome',
         templateUrl: 'app/views/userhome.html',

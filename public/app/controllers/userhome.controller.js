@@ -2,6 +2,7 @@
 angular.module("dmsApp")
   .controller('userCtrl', ['$scope','$rootScope','UserService', '$location', '$state', '$mdDialog',function($scope, $rootScope, UserService, $location, $state, $mdDialog){
     if (!localStorage.getItem('userToken')) {
+      console.log('trigger home');
       $location.url('/home');
     }else{
     UserService.decodeUser();
@@ -9,14 +10,9 @@ angular.module("dmsApp")
         $scope.user = res.data.user;
       });
     };
-    //fxn to show or hide user profile info
-    $scope.visibility = true;
-    $scope.toggleVisibility = function(){
-      if($scope.visibility === true){
-        $scope.visibility = false;
-      } else {
-        $scope.visibility = true;
-      }
+
+    $scope.toProfile = function(){
+      $location.url('/userprofile');
     }
     //fxn to enable/disable user profile for editing
     $scope.editMode = true;
@@ -70,7 +66,7 @@ angular.module("dmsApp")
     $scope.createNewDoc = function(doc){
       doc.ownerId = $rootScope.userId;
       UserService.createDoc(doc).then(function(res) {
-        $scope.fetchMyDocs();
+        $location.url('/userhome');
       });
     };
 
@@ -87,13 +83,8 @@ angular.module("dmsApp")
       });
     };
     
-    $scope.showCreateModal = function() {
-      $mdDialog.show({
-        controller: DialogController,
-        templateUrl: '../../app/views/createdoc.view.html',
-        parent: angular.element(document.body),
-        clickOutsideToClose:false
-      })
+    $scope.toCreateView = function() {
+      $location.url('/createdoc');
     };
 
     $scope.logout = function() {

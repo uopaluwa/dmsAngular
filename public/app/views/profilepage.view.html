@@ -1,0 +1,50 @@
+<md-toolbar layout="row" class "md-padding">
+    <div class="md-toolbar-tools">
+      <md-button id="logo" ng-click="logout()">DOC
+        <ng-md-icon icon="cloud" style="fill: white; margin-top: -7px;" size="40"></ng-md-icon>
+      </md-button>
+      <span flex></span>
+      <md-fab-speed-dial md-open="false" md-direction="down" ng-class="md-fling" style=""><br>
+        <md-fab-trigger style="margin-top: 75%;">
+          <md-button aria-label="text" style="fill: blue;" class="md-warn">
+            <span>Hi, {{user.username}}</span>
+          </md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
+          <md-button ng-click="toProfile()" class="md-fab md-primary md-raised" aria-label="Account">
+            <ng-md-icon icon="account_box" size="40"></ng-md-icon>
+          </md-button>
+          <md-button aria-label="Logout" class="md-fab md-primary md-raised" ng-click="logout()">
+            <ng-md-icon icon="logout" size="40"></ng-md-icon>
+          </md-button>
+        </md-fab-actions>
+      </md-fab-speed-dial>
+    </div>
+</md-toolbar>
+  <div id="profile-container">
+    <md-card layout-align="center center" class="profile-content" flex="30" flex-sm="85" flex-md="40">
+        <h3 layout="row" layout-align="center center">{{user.username}}'s Profile</h3>
+        <md-input-container>
+          <label>Username</label>
+          <input ng-disabled="editMode" ng-model="user.username"></input>
+        </md-input-container>
+        <md-input-container>
+          <label>Firstname</label>
+          <input ng-disabled="editMode" ng-model="user.name.first"></input>
+        </md-input-container>
+        <md-input-container>
+          <label>Lastname</label>
+          <input ng-disabled="editMode" ng-model="user.name.last"></input>
+        </md-input-container>
+        <md-input-container>
+          <label>Email</label>
+          <input ng-disabled="editMode" ng-model="user.email"></input>
+        </md-input-container>
+        <div class="md-toolbar-tools" layout="row" layout-sm="column" layout-align="center center">
+          <md-button ng-show="editMode" ng-click="toggleMode()">EDIT</md-button>
+          <md-button ng-show="!editMode" ng-click="editProfile(user)">SAVE</md-button>
+          <md-button ng-show="!editMode" ng-click="editMode = 'true'">CANCEL</md-button>
+          <md-button ng-click="deleteUser(user._id)">DELETE</md-button>
+        </div>
+    </md-card>
+  </div>

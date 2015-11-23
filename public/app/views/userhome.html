@@ -1,67 +1,49 @@
 <div ng-controller='userCtrl'>
   <md-toolbar layout="row" class "md-padding">
     <div class="md-toolbar-tools">
-      <md-button id="logo" ng-click="logout()">DOC<ng-md-icon icon="cloud" style="fill: white; margin-top: -7px;" size="40"></ng-md-icon></md-button>
+      <md-button id="logo" ng-click="logout()">DOC
+        <ng-md-icon icon="cloud" style="fill: white; margin-top: -7px;" size="40"></ng-md-icon>
+      </md-button>
       <span flex></span>
-      <p>Hi, {{user.username}}</p>
-      <md-button ng-click="logout()">LOG OUT</md-button>
+      <md-fab-speed-dial md-open="false" md-direction="down" ng-class="md-fling" style="margin-top:9.5%;">
+        <md-fab-trigger>
+          <md-button aria-label="text" style="fill: blue;" class="md-warn">
+            <span>Hi, {{user.username}}</span>
+          </md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
+          <md-button ng-click="toProfile()" class="md-fab md-primary md-raised" aria-label="Account">
+            <ng-md-icon icon="account_box" size="40"></ng-md-icon>
+          </md-button>
+          <md-button aria-label="Logout" class="md-fab md-primary md-raised" ng-click="logout()">
+            <ng-md-icon icon="logout" size="40"></ng-md-icon>
+          </md-button>
+        </md-fab-actions>
+      </md-fab-speed-dial>
     </div>
   </md-toolbar>
   <md-content id="view-body">
-    <section ng-hide=visibility class="profile-area">
-      <div layout="column" layout-align="center center">
-        <h3 layout="row" layout-align="center center">{{user.username}}'s Profile</h3>
-        <md-input-container>
-          <label>Username</label>
-          <input ng-disabled="editMode" ng-model="user.username"></input>
-        </md-input-container>
-        <md-input-container>
-          <label>Firstname</label>
-          <input ng-disabled="editMode" ng-model="user.name.first"></input>
-        </md-input-container>
-        <md-input-container>
-          <label>Lastname</label>
-          <input ng-disabled="editMode" ng-model="user.name.last"></input>
-        </md-input-container>
-        <md-input-container>
-          <label>Email</label>
-          <input ng-disabled="editMode" ng-model="user.email"></input>
-        </md-input-container>
-        <div class="md-toolbar-tools" layout="row" layout-sm="column" layout-align="center center">
-          <md-button ng-show="editMode" ng-click="toggleMode()">EDIT</md-button>
-          <md-button ng-show="!editMode" ng-click="editProfile(user)">SAVE</md-button>
-          <md-button ng-show="!editMode" ng-click="editMode = 'true'">CANCEL</md-button>
-          <md-button ng-click="deleteUser(user._id)">DELETE</md-button>
-        </div>
-      </div>
-    </section><br>
-    <section >
-      <div >
-        <div layout="row">
-        <md-button class="md-fab md-fab-top-right md-accent-2" aria-label="Add" ng-click="showCreateModal()">
-          <ng-md-icon icon="add" style="fill: pink" size="40"></ng-md-icon>
-        </md-button>
-        <md-button ng-click="toggleVisibility()" class="md-fab md-fab-top-left md-accent-2" aria-label="Account">
-          <ng-md-icon icon="account_box" style="fill: pink" size="40"></ng-md-icon>
+    <div>
+      <div layout="row" class='top-icon'>
+        <md-button class="md-fab md-fab-top-right md-warn" aria-label="Add" ng-click="toCreateView()">
+          <ng-md-icon icon="add" style="fill: white" size="40"></ng-md-icon>
         </md-button>
       </div>
-        <div data-ng-init="fetchMyDocs()">
-          <h5 class="md-display-3" id="mydocs">My Documents</h5>
-          <div layout="row" layout-sm="column" layout-wrap layout-align="center" id="event-list">
-            <md-card flex="30" flex-sm="33" flex-md="40" ng-repeat="doc in userDocs | orderBy: 'dateCreated'">
-              <md-card-content>
-                <h2 class="md-title">{{doc.title | uppercase}}</h2>
-                <span class="gap">{{(doc.content).substring(0, 70)+'...'}}</span>
-              </md-card-content>
-              <md-card-actions layout="row" layout-align="end center">
-                <md-button class="md-primary" aria-label="mode_view" ng-click="showEditModal(doc._id, false)"><ng-md-icon icon="open_in_new" style="fill: pink" size="40"></ng-md-icon></md-button>
-                <md-button class="md-primary" aria-label="mode_edit" ng-click="showEditModal(doc._id, true)"><ng-md-icon icon="mode_edit" style="fill: pink" size="40"></ng-md-icon></md-button>
-                <md-button class="md-primary" aria-label="delete" ng-click="deleteDocument(doc._id)"><ng-md-icon icon="delete" style="fill: pink" size="40"></ng-md-icon></md-button>
-              </md-card-actions>
-            </md-card>
-          </div>
+      <div data-ng-init="fetchMyDocs()">
+        <div layout="row" layout-sm="column" layout-wrap layout-align="center" id="doc-list">
+          <md-card flex="30" flex-sm="33" flex-md="40" ng-repeat="doc in userDocs | orderBy: 'dateCreated'">
+            <md-card-content style="height: 70px">
+              <h2 class="md-title">{{doc.title | uppercase}}</h2>
+              <span class="gap">{{(doc.content).substring(0, 70)+'...'}}</span>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="center center">
+              <md-button class="md-primary" aria-label="mode_view" ng-click="showEditModal(doc._id, false)"><ng-md-icon icon="open_in_new" style="fill: grey" size="25"></ng-md-icon></md-button>
+              <md-button class="md-primary" aria-label="mode_edit" ng-click="showEditModal(doc._id, true)"><ng-md-icon icon="mode_edit" style="fill: grey" size="25"></ng-md-icon></md-button>
+              <md-button class="md-primary" aria-label="delete" ng-click="deleteDocument(doc._id)"><ng-md-icon icon="delete" style="fill: grey" size="25"></ng-md-icon></md-button>
+            </md-card-actions>
+          </md-card>
         </div>
       </div>
-    </section>
+    </div>
   </md-content>
 </div>
