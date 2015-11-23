@@ -2,7 +2,6 @@
 angular.module("dmsApp")
   .controller('userCtrl', ['$scope','$rootScope','UserService', '$location', '$state', '$mdDialog',function($scope, $rootScope, UserService, $location, $state, $mdDialog){
     if (!localStorage.getItem('userToken')) {
-      console.log('trigger home');
       $location.url('/home');
     }else{
     UserService.decodeUser();

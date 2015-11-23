@@ -4,22 +4,23 @@
       <md-button id="logo" ng-click="logout()">DOC
         <ng-md-icon icon="cloud" style="fill: white; margin-top: -7px;" size="40"></ng-md-icon>
       </md-button>
-      <span flex></span>
-      <md-fab-speed-dial md-open="false" md-direction="down" ng-class="md-fling" style="margin-top:9.5%;">
+      <!-- <span flex></span> -->
+      <md-fab-speed-dial md-open="false" layout="row" layout-align="end center" 
+flex md-direction="left" ng-class="md-fling">
         <md-fab-trigger>
-          <md-button aria-label="text" style="fill: blue;" class="md-warn">
-            <span>Hi, {{user.username}}</span>
+          <md-button aria-label="menu" class="md-warn">
+            Hi, {{user.username}}
           </md-button>
-        </md-fab-trigger>
+         </md-fab-trigger>
         <md-fab-actions>
-          <md-button ng-click="toProfile()" class="md-fab md-primary md-raised" aria-label="Account">
-            <ng-md-icon icon="account_box" size="40"></ng-md-icon>
+          <md-button ng-click="toProfile()" class="md-fab md-warn md-raised" aria-label="Account">
+            <ng-md-icon icon="account_box" size="25"></ng-md-icon>
           </md-button>
-          <md-button aria-label="Logout" class="md-fab md-primary md-raised" ng-click="logout()">
-            <ng-md-icon icon="logout" size="40"></ng-md-icon>
+          <md-button aria-label="Logout" class="md-fab md-warn md-raised" ng-click="logout()">
+            <ng-md-icon icon="logout" size="25"></ng-md-icon>
           </md-button>
         </md-fab-actions>
-      </md-fab-speed-dial>
+     </md-fab-speed-dial>
     </div>
   </md-toolbar>
   <md-content id="view-body">
