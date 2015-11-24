@@ -2,7 +2,7 @@
 - Allows execution of CRUD operations on User Account and User documents
 
 - Getting Started  
-  - Ensure that you have the following installed: Node.js, MongoDB, Bower and gulp
+  - Ensure that you have the following installed: Node.js, MongoDB, Bower and gulp, karma
 
 - Clone the repo
   -  git clone https://github.com/andela-uopaluwa/dmsAngular.git
