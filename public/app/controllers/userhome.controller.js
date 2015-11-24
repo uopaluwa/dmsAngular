@@ -13,6 +13,11 @@ angular.module("dmsApp")
     $scope.toProfile = function(){
       $location.url('/userprofile');
     }
+
+    $scope.toUserhome = function(){
+      $location.url('/userhome');
+    }
+
     //fxn to enable/disable user profile for editing
     $scope.editMode = true;
     $scope.toggleMode = function(){
